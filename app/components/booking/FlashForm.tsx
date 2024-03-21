@@ -1,0 +1,250 @@
+"use client"
+import { DISPONIBILITY_ENUM, FlashFormInputs, PLACEMENT_ENUM } from "@/utils/enum";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { FaHashtag, FaLongArrowAltDown, FaPhoneAlt, FaUser } from "react-icons/fa";
+import { IoIosArrowBack, IoMdMail } from "react-icons/io";
+
+
+const FlashForm = () => {
+    const [submitLoading, setSubmitLoading] = useState(false);
+    const router = useRouter();
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<FlashFormInputs>();
+
+    const onSubmit: SubmitHandler<FlashFormInputs> = (data) => {
+        console.log(data);
+    };
+
+    const handleClickBack = () => {
+        router.push("/booking");
+    };
+    return (
+        <>
+            <div className="relative md:w-[45vw] w-[85vw] mx-3 my-10">
+                <div className="flex justify-center items-center mb-6 gap-3">
+                    <FaLongArrowAltDown size={15} />
+                    <h2 className="font-bold text-lg md:text-xl">Remplis le formulaire </h2>
+                    <FaLongArrowAltDown size={15} />
+                </div>
+
+
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="flex flex-col gap-5">
+
+                        {/*------------------------  Nom et prénom -----------------------------*/}
+                        <div className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
+                            <div className="flex flex-col gap-3">
+                                <div>
+                                    {/*Nom*/}
+                                    <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
+                                        <FaUser size={15} className="text-accent" />
+                                        <input disabled={submitLoading} type="text" placeholder="Nom"  {...register("name", {
+                                            required: true,
+                                            pattern: /^[A-Za-z]+$/,
+                                            maxLength: 20,
+                                        })} />
+                                    </label>
+                                    {errors.name?.type === "pattern" && (
+                                        <span className="text-error text-xs">
+                                            Le nom doit être composé de lettre uniquement
+                                        </span>
+                                    )}
+                                    {errors.name?.type === "required" && (
+                                        <span className="text-error text-xs">
+                                            Le nom est obligatoire
+                                        </span>
+                                    )}
+                                    {errors.name?.type === "maxLength" && (
+                                        <span className="text-error text-xs">
+                                            Le nomn est trop long
+                                        </span>
+                                    )}
+
+                                </div>
+                                <div>
+                                    {/*Prénom*/}
+                                    <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
+                                        <FaUser size={15} className="text-accent" />
+                                        <input disabled={submitLoading} type="text" placeholder="Prénom" {...register("surname", {
+                                            required: true,
+                                            pattern: /^[A-Za-z]+$/,
+                                            maxLength: 20,
+                                        })} />
+                                    </label>
+                                    {errors.surname?.type === "pattern" && (
+                                        <span className="text-error text-xs">
+                                            Le prénom doit être composé de lettre uniquement
+                                        </span>
+                                    )}
+                                    {errors.surname?.type === "required" && (
+                                        <span className="text-error text-xs">
+                                            Le prénom est obligatoire
+                                        </span>
+                                    )}
+                                    {errors.surname?.type === "maxLength" && (
+                                        <span className="text-error text-xs">
+                                            Le prénomn est trop long
+                                        </span>
+                                    )}
+                                </div>
+                            </div>
+                        </div>
+
+                        {/*------------------------  phone et mail  -----------------------------*/}
+                        <div className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
+                            {/*Mail*/}
+                            <div>
+
+                                <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
+                                    <IoMdMail size={15} className="text-accent" />
+                                    <input
+                                        disabled={submitLoading}
+                                        type="text"
+                                        className="grow"
+                                        placeholder="Adresse mail"
+                                        {...register("email", {
+                                            required: true,
+                                            pattern: /^\S+@\S+$/i,
+                                            maxLength: 50,
+                                        })}
+                                    />
+                                </label>
+                                {errors.email?.type === "pattern" && (
+                                    <span className="text-error text-xs">
+                                        Le mail doit être valide
+                                    </span>
+                                )}
+                                {errors.email?.type === "required" && (
+                                    <span className="text-error text-xs">
+                                        Le mail est obligatoire
+                                    </span>
+                                )}
+                                {errors.email?.type === "maxLength" && (
+                                    <span className="text-error text-xs">
+                                        Le mail est trop long
+                                    </span>
+                                )}
+                            </div>
+                            {/*Phone*/}
+                            <div>
+                                <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
+                                    <FaPhoneAlt size={15} className="text-accent" />
+                                    <input
+                                        disabled={submitLoading}
+                                        type="text"
+                                        className="grow"
+                                        placeholder="Numéro de téléphone"
+                                        {...register("phone", {
+                                            required: true,
+                                            pattern: /^[0-9]+$/,
+                                        })}
+                                    />
+                                </label>
+                            </div>
+                        </div>
+
+                        {/*------------------------  Reference, Placement, Disponibility -----------------------------*/}
+                        <div className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
+                            <div>
+                                {/*Reference*/}
+                                <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
+                                    <FaHashtag size={15} className="text-accent" />
+                                    <input
+                                        disabled={submitLoading}
+                                        type="text"
+                                        className="grow"
+                                        placeholder="Référence du flash"
+                                        {...register("reference", {
+                                            required: true,
+                                            maxLength: 10,
+                                        })}
+                                    />
+                                </label>
+                                {errors.reference?.type === "required" && (
+                                    <span className="text-error text-xs">
+                                        La référence est obligatoire
+                                    </span>
+                                )}
+                                {errors.reference?.type === "maxLength" && (
+                                    <span className="text-error text-xs">
+                                        La référence est trop longue
+                                    </span>
+                                )}
+                            </div>
+                            <div>
+                                {/*Placement*/}
+                                <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
+                                    <h2 className="text-md font-bold text-accent md:ml-2"> Selectionne ton emplacement</h2>
+                                </div>
+                                <select
+                                    disabled={submitLoading}
+                                    className="select select-primary w-full bg-base-300 select-sm"
+                                    {...register("placement", { required: true })}
+                                >
+                                    <option value="" disabled >
+                                        Selectionne ton emplacement
+                                    </option>
+                                    {Object.values(PLACEMENT_ENUM).map((placement) => (
+                                        <option key={placement} value={placement}>
+                                            {placement}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div>
+                                {/*Disponibility*/}
+                                <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
+                                    <h2 className="text-md font-bold text-accent md:ml-2"> Ta dispo ?</h2>
+                                </div>
+
+                                <select
+                                    disabled={submitLoading}
+                                    className="select select-primary w-full bg-base-300 select-sm"
+                                    {...register("disponibility", { required: true, value: undefined })}
+                                >
+                                    <option value="" disabled >
+                                        Ta dispo ?
+                                    </option>
+                                    {Object.values(DISPONIBILITY_ENUM).map((disponibility) => (
+                                        <option key={disponibility} value={disponibility}>
+                                            {disponibility}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+
+                        {/*SUBMIT*/}
+                        <div className="flex justify-between mt-2">
+                            <button
+                                onClick={handleClickBack}
+                                className="btn btn-active btn-secondary btn-sm hover:scale-105 active:scale-95"
+                            >
+                                <IoIosArrowBack size={20} />
+                            </button>
+                            <button
+                                type="submit"
+                                className="btn btn-active btn-primary btn-sm hover:scale-105 active:scale-95 min-w-20"
+                            >
+                                {submitLoading ? (
+                                    <span className="loading loading-dots "></span>
+                                ) : (
+                                    "Envoyer"
+                                )}
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </>
+    )
+}
+
+export default FlashForm

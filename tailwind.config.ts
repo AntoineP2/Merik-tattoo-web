@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss/types";
 
 const config: Config = {
   content: [
@@ -7,7 +7,16 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   daisyui: {
-    themes: ["light", "dark", "halloween", "retro", "synthwave", "coffee", "dracula"],
+    themes: [
+      "light",
+      "dark",
+      "halloween",
+      "retro",
+      "synthwave",
+      "coffee",
+      "dracula",
+      "forest",
+    ],
   },
   plugins: [require("daisyui")],
 };

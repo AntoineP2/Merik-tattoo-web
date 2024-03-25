@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer";
 import Navigation from "./components/header/Navigation";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,13 +21,16 @@ export default function RootLayout({
     <html lang="en" data-theme="synthwave" suppressHydrationWarning>
       <body className={inter.className}>
         <div className="flex flex-col h-screen">
-          <div className="mb-20 z-30 text-lg"><Navigation /></div>
+          <div className="mb-20 z-30 text-lg">
+            <Navigation />
+          </div>
           <div className="md:mx-[10%] mx-[5%] mt-10 z-10 text-md">
             {children}
           </div>
           <div className="h-full flex flex-col justify-end">
             <Footer />
           </div>
+          <Toaster richColors />
         </div>
       </body>
     </html>

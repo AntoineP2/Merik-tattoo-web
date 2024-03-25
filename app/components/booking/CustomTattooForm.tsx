@@ -298,7 +298,7 @@ const CustomTattooForm = () => {
                     {...register("description", {
                       required: true,
                       maxLength: 10000,
-                      pattern: /^[A-Za-z0-9!@#$_/\s-]+$/,
+                      pattern: /^[A-Za-z0-9!@#$_/\s\-,\.]+$/,
                     })}
                   />
                 </label>

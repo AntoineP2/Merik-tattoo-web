@@ -191,18 +191,18 @@ const FlashForm = () => {
                       pattern: /^[0-9]+$/,
                     })}
                   />
-                  {errors.phone?.type === "pattern" && (
-                    <span className="text-error text-xs">
-                      Le numéro de téléphone doit être composé de chiffre
-                      uniquement
-                    </span>
-                  )}
-                  {errors.phone?.type === "required" && (
-                    <span className="text-error text-xs">
-                      Le numéro de téléphone est obligatoire
-                    </span>
-                  )}
                 </label>
+                {errors.phone?.type === "pattern" && (
+                  <span className="text-error text-xs">
+                    Le numéro de téléphone doit être composé de chiffre
+                    uniquement
+                  </span>
+                )}
+                {errors.phone?.type === "required" && (
+                  <span className="text-error text-xs">
+                    Le numéro de téléphone est obligatoire
+                  </span>
+                )}
               </div>
             </div>
 

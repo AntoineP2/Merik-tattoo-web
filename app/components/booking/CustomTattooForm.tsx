@@ -198,17 +198,17 @@ const CustomTattooForm = () => {
                       pattern: /^[0-9]+$/,
                     })}
                   />
-                  {errors.phone?.type === "pattern" && (
-                    <span className="text-error text-xs">
-                      Le numéro doit être valide
-                    </span>
-                  )}
-                  {errors.phone?.type === "required" && (
-                    <span className="text-error text-xs">
-                      Le numéro est obligatoire
-                    </span>
-                  )}
                 </label>
+                {errors.phone?.type === "pattern" && (
+                  <span className="text-error text-xs">
+                    Le numéro doit être valide
+                  </span>
+                )}
+                {errors.phone?.type === "required" && (
+                  <span className="text-error text-xs">
+                    Le numéro est obligatoire
+                  </span>
+                )}
               </div>
             </div>
 

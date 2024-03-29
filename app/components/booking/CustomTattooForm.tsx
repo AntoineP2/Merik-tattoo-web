@@ -23,15 +23,6 @@ const CustomTattooForm = () => {
     formState: { errors },
   } = useForm<CustomTattooFormInputs>();
 
-  //   name: string;
-  //   surname: string;
-  //   email: string;
-  //   phone: string;
-  //   description: string;
-  //   placement: PLACEMENT_ENUM;
-  //   disponibility: DISPONIBILITY_ENUM;
-  //   size: TATTOO_SIZE_ENUM;
-
   const onSubmit: SubmitHandler<CustomTattooFormInputs> = async (data) => {
     try {
       const {

@@ -1,7 +1,7 @@
 export default function Home() {
   return (
     <main>
-      <div className="w-[70vw]">
+      <div>
         <p>
           Novitates autem si spem adferunt, ut tamquam in herbis non fallacibus
           fructus appareat, non sunt illae quidem repudiandae, vetustas tamen

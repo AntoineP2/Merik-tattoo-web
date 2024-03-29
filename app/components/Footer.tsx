@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 const Footer = () => {
     return (
-        <footer className="flex flex-col gap-4 md:flex-row md:justify-around md:items-center px-10 py-4 border-t bg-base-200 text-base-content border-base-300 mt-5 md:mt-0">
+        <footer className="flex flex-col gap-4 md:flex-row md:justify-around md:items-center px-10 py-4 border-t bg-base-300 text-base-content border-base-200 md:mt-0">
             <aside className="items-center flex gap-2 text-sm">
                 <Image src={logo} alt="Logo merik" width={70} />
                 <div className="flex flex-col">

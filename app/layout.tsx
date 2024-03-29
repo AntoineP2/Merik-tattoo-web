@@ -18,16 +18,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="synthwave" suppressHydrationWarning>
+    <html lang="en" data-theme="dracula" suppressHydrationWarning>
       <body className={inter.className}>
-        <div className="flex flex-col h-screen">
-          <div className="mb-20 z-30 text-lg">
+        <div className="flex flex-col h-full min-h-screen bg-black">
+          <div className="z-30 text-lg">
             <Navigation />
           </div>
-          <div className="md:mx-[10%] mx-[5%] mt-10 z-10 text-md">
+          <div className="md:mx-[10%] px-[5%] md:px-2 h-full pb-5 flex-grow md:pb-0 pt-28 z-10 text-md bg-gradient-to-b from-base-100 to-base-300">
             {children}
           </div>
-          <div className="h-full flex flex-col justify-end">
+          <div className="z-30 justify-self-end">
             <Footer />
           </div>
           <Toaster richColors />

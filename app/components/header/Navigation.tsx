@@ -3,9 +3,8 @@ import Image from "next/image";
 import logo from "../../../public/logo-merik.png";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
-import lettrage from "../../../public/logo-lettrage.png"
+import lettrage from "../../../public/logo-lettrage.png";
 
 const Navigation = () => {
   const [isClick, setIsClick] = useState(false);
@@ -25,8 +24,9 @@ const Navigation = () => {
   return (
     <div className="absolute w-screen z-40">
       <div
-        className={`flex items-center justify-between px-3 py-2 ${isClick ? "bg-base-200" : "bg-base-100"
-          } transition ease-in-out duration-150 md:shadow-sm md:shadow-base-200`}
+        className={`flex items-center justify-between px-3 py-2 ${
+          isClick ? "bg-base-200" : "bg-base-100"
+        } transition ease-in-out duration-150 md:shadow-sm md:shadow-base-200`}
       >
         <div className=" md:relative md:flex-1 md:flex justify-center">
           <button onClick={() => handleClickLink("/", false)}>
@@ -38,7 +38,9 @@ const Navigation = () => {
             />
           </button>
         </div>
-        <div className="flex-1 flex justify-center items-center md:hidden"><Image src={lettrage} alt="Lettrage merik" width={180} /></div>
+        <div className="flex-1 flex justify-center items-center md:hidden">
+          <Image src={lettrage} alt="Lettrage merik" width={180} />
+        </div>
         <div className="md:hidden">
           <button onClick={handleClick}>
             {isClick ? <IoMdClose size={30} /> : <IoMdMenu size={30} />}
@@ -65,10 +67,11 @@ const Navigation = () => {
         </div>
       </div>
       <div
-        className={`md:hidden absolute transition ease-in-out duration-150 ${isClick
-          ? "-z-10 bg-base-200 border-b border-accent"
-          : "-translate-y-32 -z-10 bg-base-100"
-          } py-5`}
+        className={`md:hidden absolute transition ease-in-out duration-150 ${
+          isClick
+            ? "-z-10 bg-base-200 border-b border-accent"
+            : "-translate-y-32 -z-10 bg-base-100"
+        } py-5`}
       >
         <div className="flex flex-col gap-2 items-center w-screen">
           <button onClick={() => handleClickLink("/", true)}>

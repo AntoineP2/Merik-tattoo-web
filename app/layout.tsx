@@ -24,7 +24,7 @@ export default function RootLayout({
           <div className="z-30 text-lg">
             <Navigation />
           </div>
-          <div className="md:mx-[10%] px-[5%] md:px-2 h-full pb-5 flex-grow md:pb-0 pt-28 z-10 text-md">
+          <div className="md:mx-[10%] px-[5%] mb-14 md:px-2 h-full pb-5 flex-grow md:pb-0 pt-28 z-10 text-md">
             {children}
           </div>
           <div className="z-30 justify-self-end">

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import merikAction from "../../../public/merikAction.jpg";
 
-const TattoDescription = () => {
+const TattooDescription = () => {
   return (
     <>
       <div className="flex flex-col md:flex-row flex-wrap gap-5 items-center md:justify-around md:items-center">
@@ -30,4 +30,4 @@ const TattoDescription = () => {
   );
 };
 
-export default TattoDescription;
+export default TattooDescription;

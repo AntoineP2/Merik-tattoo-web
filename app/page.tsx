@@ -1,9 +1,11 @@
 import ListTattoo from "./components/homePage/ListTattoo";
 import Description from "./components/homePage/Description";
-import TattoDescription from "./components/homePage/TattoDescription";
+import TattooDescription from "./components/homePage/TattooDescription";
 import lettragePresentation from "../public/lettrage-presentation.png";
 import lettrageTattooList from "../public/lettrage-tattoo-list.png";
+import lettrageContact from "../public/lettrage-contact.png";
 import Image from "next/image";
+import HomeContact from "./components/homePage/HomeContact";
 
 export default function Home() {
   return (
@@ -12,7 +14,7 @@ export default function Home() {
         <Image src={lettragePresentation} alt="lettrage" width={150} />
       </div>
       <div className="flex flex-col gap-7 mb-14">
-        <div className="mb-10 md:mb-14">
+        <div className="mb-5 md:mb-14">
           <div className="divider divider-primary">
             <h1 className="md:text-lg text-md font-bold text-primary">
               Qui est Merikos ?
@@ -26,7 +28,7 @@ export default function Home() {
               Son tattoo style
             </h1>
           </div>
-          <TattoDescription />
+          <TattooDescription />
         </div>
       </div>
       <div className="flex justify-center items-center">
@@ -34,6 +36,12 @@ export default function Home() {
       </div>
       <div className="flex justify-center items-center mt-10">
         <ListTattoo />
+      </div>
+      <div className="mt-14">
+        <div className="flex justify-center items-center">
+          <Image src={lettrageContact} alt="lettrage" width={150} />
+        </div>
+        <HomeContact />
       </div>
     </main>
   );

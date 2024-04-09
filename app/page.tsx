@@ -4,8 +4,10 @@ import TattooDescription from "./components/homePage/TattooDescription";
 import lettragePresentation from "../public/lettrage-presentation.png";
 import lettrageTattooList from "../public/lettrage-tattoo-list.png";
 import lettrageContact from "../public/lettrage-contact.png";
+import lettrageTattooCare from "../public/lettrage-tattoo-care.png";
 import Image from "next/image";
 import HomeContact from "./components/homePage/HomeContact";
+import TattooCare from "./components/homePage/TattooCare";
 
 export default function Home() {
   return (
@@ -42,6 +44,12 @@ export default function Home() {
           <Image src={lettrageContact} alt="lettrage" width={150} />
         </div>
         <HomeContact />
+      </div>
+      <div className="mt-14">
+        <div className="flex justify-center items-center">
+          <Image src={lettrageTattooCare} alt="lettrage" width={150} />
+        </div>
+        <TattooCare />
       </div>
     </main>
   );

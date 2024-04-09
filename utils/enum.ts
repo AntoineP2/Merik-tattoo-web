@@ -59,3 +59,9 @@ export type TattoosListType = {
 export type AppInitialStateType = {
   isOpen: boolean;
 };
+
+export type CareListType = {
+  title: string;
+  icon: JSX.Element;
+  description: string;
+};

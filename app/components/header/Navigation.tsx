@@ -2,22 +2,25 @@
 import Image from "next/image";
 import logo from "../../../public/logo-merik.png";
 import { IoMdClose, IoMdMenu } from "react-icons/io";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import lettrage from "../../../public/logo-lettrage.png";
+import { useDispatch, useSelector } from "react-redux";
+import { setOpenFalse, setToggleOpen } from "@/store/app.slice";
+import { RootState } from "@/store/app.store";
 
 const Navigation = () => {
-  const [isClick, setIsClick] = useState(false);
+  const dispatch = useDispatch();
+  const { isOpen } = useSelector((state: RootState) => state.app);
   const router = useRouter();
 
   const handleClick = () => {
-    setIsClick(!isClick);
+    dispatch(setToggleOpen());
   };
 
   const handleClickLink = (path: string, isMobile: boolean) => {
     router.push(path);
     if (isMobile) {
-      setIsClick(!isClick);
+      dispatch(setOpenFalse());
     }
   };
 
@@ -25,7 +28,7 @@ const Navigation = () => {
     <div className="absolute w-screen z-40">
       <div
         className={`flex items-center justify-between px-3 py-2 ${
-          isClick ? "bg-base-200" : "bg-base-100"
+          isOpen ? "bg-base-200" : "bg-base-100"
         } transition ease-in-out duration-150 md:shadow-sm md:shadow-base-200`}
       >
         <div className=" md:relative md:flex-1 md:flex justify-center">
@@ -43,7 +46,7 @@ const Navigation = () => {
         </div>
         <div className="md:hidden">
           <button onClick={handleClick}>
-            {isClick ? <IoMdClose size={30} /> : <IoMdMenu size={30} />}
+            {isOpen ? <IoMdClose size={30} /> : <IoMdMenu size={30} />}
           </button>
         </div>
         <div className="hidden md:flex flex-1 items-center justify-center">
@@ -68,7 +71,7 @@ const Navigation = () => {
       </div>
       <div
         className={`md:hidden absolute transition ease-in-out duration-150 ${
-          isClick
+          isOpen
             ? "-z-10 bg-base-200 border-b border-accent"
             : "-translate-y-32 -z-10 bg-base-100"
         } py-5`}

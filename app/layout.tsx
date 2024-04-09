@@ -4,6 +4,8 @@ import "./globals.css";
 import Footer from "./components/Footer";
 import Navigation from "./components/header/Navigation";
 import { Toaster } from "sonner";
+import StoreProvider from "./storeProvider";
+import BodyWrapper from "./BodyWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,21 +20,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="dracula" suppressHydrationWarning>
-      <body className={inter.className}>
-        <div className="flex flex-col h-full min-h-screen bg-gradient-to-b from-base-100 to-base-300">
-          <div className="z-30 text-lg">
-            <Navigation />
+    <StoreProvider>
+      <html lang="en" data-theme="dracula" suppressHydrationWarning>
+        <body className={inter.className}>
+          <div className="flex flex-col h-full min-h-screen bg-gradient-to-b from-base-100 to-base-300">
+            <div className="z-30 text-lg">
+              <Navigation />
+            </div>
+            <BodyWrapper>{children}</BodyWrapper>
+            <div className="z-30 justify-self-end">
+              <Footer />
+            </div>
+            <Toaster richColors />
           </div>
-          <div className="md:mx-[10%] px-[5%] mb-14 md:px-2 h-full pb-5 flex-grow md:pb-0 pt-28 z-10 text-md">
-            {children}
-          </div>
-          <div className="z-30 justify-self-end">
-            <Footer />
-          </div>
-          <Toaster richColors />
-        </div>
-      </body>
-    </html>
+        </body>
+      </html>
+    </StoreProvider>
   );
 }

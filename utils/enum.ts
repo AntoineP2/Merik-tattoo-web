@@ -55,3 +55,7 @@ export type TattoosListType = {
   description: string;
   image: StaticImageData;
 };
+
+export type AppInitialStateType = {
+  isOpen: boolean;
+};

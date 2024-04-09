@@ -1,7 +1,7 @@
 import { MdOutlineCleanHands } from "react-icons/md";
 import { CareListType } from "./enum";
 import { FaWind } from "react-icons/fa";
-import { IoWater } from "react-icons/io5";
+import { IoCallSharp, IoWater } from "react-icons/io5";
 import { TbSunOff } from "react-icons/tb";
 import { GiClothes, GiHotSurface, GiTripleScratches } from "react-icons/gi";
 
@@ -47,5 +47,11 @@ export const careList: CareListType[] = [
     icon: <GiClothes className="text-accent" size={20} />,
     description:
       "Évite de porter des vêtements serrés qui pourraient frotter contre ton tatouage et irriter la peau. Opte pour des vêtements amples et confortables pour permettre à ta peau de respirer.",
+  },
+  {
+    title: "Consulte ton tatoueur en cas de problème ",
+    icon: <IoCallSharp className="text-accent" size={20} />,
+    description:
+      "Si tu remarques des signes d'infection tels que rougeur excessive, gonflement, chaleur ou drainage de la plaie, consulte immédiatement ton tatoueur ou un professionnel de la santé.",
   },
 ];

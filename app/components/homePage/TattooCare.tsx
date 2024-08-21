@@ -10,7 +10,7 @@ const TattooCare = () => {
             return (
               <div key={index}>
                 <div className="flex gap-2 items-center">
-                  <h2 className="font-bold text-accent">{care.title}</h2>
+                  <h2 className="font-bold text-primary">{care.title}</h2>
                   {care.icon}
                 </div>
                 <p className="px-5">{care.description}</p>

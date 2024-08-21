@@ -54,3 +54,8 @@ export default function Home() {
     </main>
   );
 }
+
+
+// TODO : Dans formulaire Remplacer Choix Emplacement par Champ vide
+// TODO : Ajouter l'ajout d'image pour les mails, emplacement et image tatoo (Faculitatif)
+// TODO : Remplacer Tel par Instagram

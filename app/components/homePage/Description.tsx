@@ -11,7 +11,7 @@ const Description = () => {
           width={300}
           className="rounded-md border border-primary shadow-sm shadow-primary"
         />
-        <div className="bg-base-300 rounded-md py-3 px-2 mt-5 md:w-[40vw] md:self-end active:bg-purple-400 transition duration-150" style={{ boxShadow: '0px 0px 15px 10px rgba(255, 162, 51, 0.8)' }}>
+        <div className="bg-base-300 rounded-md py-3 px-2 mt-5 md:w-[40vw] md:self-end active:shadow-gold-centered transition duration-150">
           <h1 className="text-primary font-bold text-md flex justify-center">
             Léo &ldquo;InkMaster Dupont
           </h1>

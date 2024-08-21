@@ -30,7 +30,7 @@ const HomeContact = () => {
             {" "}
             <button
               onClick={handleClickReservations}
-              className="px-5 py-2 md:bg-secondary bg-accent rounded-md font-bold scale-100 active:scale-90 hover:bg-accent transtion duration-150 ease-in-out"
+              className="px-5 py-2 md:bg-primary bg-primary rounded-md font-bold scale-100 active:scale-90 hover:bg-accent transtion duration-150 ease-in-out"
             >
               Reservations
             </button>

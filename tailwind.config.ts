@@ -8,14 +8,7 @@ const config: Config = {
   ],
   daisyui: {
     themes: [
-      "light",
-      "dark",
-      "halloween",
-      "retro",
-      "synthwave",
-      "coffee",
-      "dracula",
-      "forest",
+      "luxury",
     ],
   },
   plugins: [require("daisyui")],

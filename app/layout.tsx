@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <StoreProvider>
-      <html lang="en" data-theme="dracula" suppressHydrationWarning>
+      <html lang="en" data-theme="luxury" suppressHydrationWarning>
         <body className={inter.className}>
           <div className="flex flex-col h-full min-h-screen bg-gradient-to-b from-base-100 to-base-300">
             <div className="z-30 text-lg">

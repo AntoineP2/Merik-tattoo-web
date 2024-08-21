@@ -4,15 +4,15 @@ import merikAction from "../../../public/merikAction.jpg";
 const TattooDescription = () => {
   return (
     <>
-      <div className="flex flex-col md:flex-row flex-wrap gap-5 items-center md:justify-around md:items-center">
+      <div className="flex flex-col-reverse md:flex-row flex-wrap gap-5 md:gap-10 items-center md:justify-around md:items-center">
         <Image
           src={merikAction}
           alt="Merik"
           width={350}
           className="rounded-md border border-primary shadow-sm shadow-primary order-1 md:order-2"
         />
-        <div className="bg-base-300 rounded-md py-3 px-2 border border-primary shadow-sm shadow-primary md:w-[40vw] md:self-end order-2 md:order-1">
-          <h1 className="text-accent font-bold text-md flex justify-center">
+        <div className="bg-base-300 rounded-md py-3 px-2 mt-5 md:w-[40vw] md:self-end" style={{ boxShadow: '0px 0px 15px 10px rgba(255, 162, 51, 0.8)' }}>
+          <h1 className="text-primary font-bold text-md flex justify-center">
             Style de Tattoo
           </h1>
           <p>

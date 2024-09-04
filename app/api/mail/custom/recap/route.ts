@@ -13,6 +13,7 @@ export async function POST(req: Request, res: Response) {
     size,
     placement,
     disponibility,
+    image,
   } = await req.json();
 
   const { data, error } = await resend.emails.send({
@@ -28,6 +29,7 @@ export async function POST(req: Request, res: Response) {
       size,
       placement,
       disponibility,
+      image,
     }),
   });
 

@@ -335,10 +335,17 @@ const CustomTattooForm = () => {
                 </div>
                 <input
                   type="file"
-                  className="file-input w-full max-w-xs"
+                  className="file-input w-full max-w-xs mb-5"
                   accept=".png, .jpeg, .jpg, .gif"
                   onChange={handleImageChange}
                 />
+                {image && (
+                  <img
+                    src={image}
+                    alt="Prévisualisation"
+                    className="mt-4 max-w-xs"
+                  />
+                )}
               </div>
             </div>
 
@@ -363,13 +370,6 @@ const CustomTattooForm = () => {
             </div>
           </div>
         </form>
-        {image && (
-          <img
-            src={image}
-            alt="Prévisualisation"
-            className="mt-4 max-w-xs"
-          />
-        )}
       </div>
     </>
   );

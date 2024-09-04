@@ -14,7 +14,7 @@ import { IoIosArrowBack, IoMdMail } from "react-icons/io";
 import { toast } from "sonner";
 
 const CustomTattooForm = () => {
-  const [image, setImage] = useState<Blob | null>(null);
+  const [image, setImage] = useState<string | null>(null);
   const [submitLoading, setSubmitLoading] = useState(false);
   const router = useRouter();
 
@@ -47,7 +47,7 @@ const CustomTattooForm = () => {
         size,
         placement,
         disponibility,
-        image: image ? URL.createObjectURL(image) : null,
+        image
       });
       setSubmitLoading(false);
       toast.success("Ta demande de réservation a bien été envoyé");
@@ -66,7 +66,11 @@ const CustomTattooForm = () => {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file && (file.type === "image/png" || file.type === "image/jpeg" || file.type === "image/jpg" || file.type === "image/gif")) {
-      setImage(file as Blob);
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setImage(reader.result as string);
+      };
     } else {
       setImage(null);
     }
@@ -361,7 +365,7 @@ const CustomTattooForm = () => {
         </form>
         {image && (
           <img
-            src={URL.createObjectURL(image)}
+            src={image}
             alt="Prévisualisation"
             className="mt-4 max-w-xs"
           />

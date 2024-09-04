@@ -27,20 +27,6 @@ const FlashForm = () => {
     formState: { errors },
   } = useForm<FlashFormInputs>();
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-
-    if (file && (file.type === "image/png" || file.type === "image/jpeg" || file.type === "image/jpg" || file.type === "image/gif")) {
-      setSelectedImage(file);
-      setPreview(URL.createObjectURL(file));
-      setError(null);
-    } else {
-      setError("Veuillez sélectionner un fichier image valide (PNG, JPEG, JPG, GIF).");
-      setSelectedImage(null);
-      setPreview(null);
-    }
-  };
-
   const onSubmit: SubmitHandler<FlashFormInputs> = async (data) => {
     try {
       const {

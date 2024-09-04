@@ -18,6 +18,9 @@ import { IoIosArrowBack, IoMdMail } from "react-icons/io";
 import { toast } from "sonner";
 
 const FlashForm = () => {
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [submitLoading, setSubmitLoading] = useState(false);
   const router = useRouter();
 
@@ -26,6 +29,20 @@ const FlashForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FlashFormInputs>();
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (file && (file.type === "image/png" || file.type === "image/jpeg" || file.type === "image/jpg" || file.type === "image/gif")) {
+      setSelectedImage(file);
+      setPreview(URL.createObjectURL(file));
+      setError(null);
+    } else {
+      setError("Veuillez sélectionner un fichier image valide (PNG, JPEG, JPG, GIF).");
+      setSelectedImage(null);
+      setPreview(null);
+    }
+  };
 
   const onSubmit: SubmitHandler<FlashFormInputs> = async (data) => {
     try {
@@ -284,6 +301,27 @@ const FlashForm = () => {
                   ))}
                 </select>
               </div>
+            </div>
+
+            <div>
+              <input
+                type="file"
+                className="file-input w-full max-w-xs"
+                onChange={handleImageChange}
+                accept=".png, .jpeg, .jpg, .gif"
+              />
+
+              {error && (
+                <p className="text-red-500 mt-2">{error}</p>
+              )}
+
+              {preview && (
+                <img
+                  src={preview}
+                  alt="Prévisualisation"
+                  className="mt-4 max-w-xs"
+                />
+              )}
             </div>
 
             {/*SUBMIT*/}

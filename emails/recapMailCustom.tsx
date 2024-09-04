@@ -1,5 +1,6 @@
 import {
   CustomTattooFormInputs,
+  CustomTattooFormMailInputs,
   DISPONIBILITY_ENUM,
   PLACEMENT_ENUM,
   TATTOO_SIZE_ENUM,
@@ -30,7 +31,8 @@ export const recapMailCustom = ({
   size,
   placement,
   disponibility,
-}: CustomTattooFormInputs) => {
+  image,
+}: CustomTattooFormMailInputs) => {
   return (
     <Html>
       <Head />
@@ -85,6 +87,13 @@ export const recapMailCustom = ({
                       <span className="font-bold mr-4">Dispo : </span>{" "}
                       <span>{disponibility}</span>
                     </Text>
+                    {image && (
+                      <img
+                        src={image}
+                        alt="Prévisualisation"
+                        className="mt-4 max-w-xs"
+                      />
+                    )}
                   </Container>
                 </Column>
               </Row>

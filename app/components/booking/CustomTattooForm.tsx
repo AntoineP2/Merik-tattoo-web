@@ -14,6 +14,7 @@ import { IoIosArrowBack, IoMdMail } from "react-icons/io";
 import { toast } from "sonner";
 
 const CustomTattooForm = () => {
+  const [imageToSee, setImageToSee] = useState<string | null>(null);
   const [submitLoading, setSubmitLoading] = useState(false);
   const router = useRouter();
 
@@ -46,6 +47,7 @@ const CustomTattooForm = () => {
         size,
         placement,
         disponibility,
+        imageToSee,
       });
       setSubmitLoading(false);
       toast.success("Ta demande de réservation a bien été envoyé");
@@ -60,6 +62,17 @@ const CustomTattooForm = () => {
   const handleClickBack = () => {
     router.push("/booking");
   };
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+
+    if (file && (file.type === "image/png" || file.type === "image/jpeg" || file.type === "image/jpg" || file.type === "image/gif")) {
+      setImageToSee(URL.createObjectURL(file));
+    } else {
+      setImageToSee(null);
+    }
+  };
+
   return (
     <>
       <div className="relative md:w-[45vw] w-[85vw] mx-3 my-10">
@@ -203,7 +216,7 @@ const CustomTattooForm = () => {
               </div>
             </div>
 
-            {/*------------------------  Reference, Placement, Disponibility -----------------------------*/}
+            {/*------------------------  Reference, Placement, Disponibility, Image -----------------------------*/}
             <div className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
               <div>
                 {/*Placement*/}
@@ -309,6 +322,20 @@ const CustomTattooForm = () => {
                     uniquement
                   </span>
                 )}
+              </div>
+              <div>
+                <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
+                  <h2 className="text-md font-bold text-accent md:ml-2">
+                    {" "}
+                    Une Image pour illustrer <span className="italic">*Facultatif*</span>
+                  </h2>
+                </div>
+                <input
+                  type="file"
+                  className="file-input w-full max-w-xs"
+                  accept=".png, .jpeg, .jpg, .gif"
+                  onChange={handleImageChange}
+                />
               </div>
             </div>
 

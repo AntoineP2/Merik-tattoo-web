@@ -50,6 +50,18 @@ export type CustomTattooFormInputs = {
   size: TATTOO_SIZE_ENUM;
 };
 
+export type CustomTattooFormMailInputs = {
+  name: string;
+  surname: string;
+  email: string;
+  phone: string;
+  description: string;
+  placement: PLACEMENT_ENUM;
+  disponibility: DISPONIBILITY_ENUM;
+  size: TATTOO_SIZE_ENUM;
+  image: string | null;
+};
+
 export type TattoosListType = {
   id: number;
   description: string;

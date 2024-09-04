@@ -87,7 +87,7 @@ export const recapMailCustom = ({
                       <span>{disponibility}</span>
                     </Text>
                     {image && (
-                      <img
+                      <Img
                         src={image}
                         alt="Prévisualisation"
                         className="mt-4 max-w-xs"

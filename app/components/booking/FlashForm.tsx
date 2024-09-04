@@ -18,9 +18,6 @@ import { IoIosArrowBack, IoMdMail } from "react-icons/io";
 import { toast } from "sonner";
 
 const FlashForm = () => {
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
   const [submitLoading, setSubmitLoading] = useState(false);
   const router = useRouter();
 
@@ -301,27 +298,6 @@ const FlashForm = () => {
                   ))}
                 </select>
               </div>
-            </div>
-
-            <div>
-              <input
-                type="file"
-                className="file-input w-full max-w-xs"
-                onChange={handleImageChange}
-                accept=".png, .jpeg, .jpg, .gif"
-              />
-
-              {error && (
-                <p className="text-red-500 mt-2">{error}</p>
-              )}
-
-              {preview && (
-                <img
-                  src={preview}
-                  alt="Prévisualisation"
-                  className="mt-4 max-w-xs"
-                />
-              )}
             </div>
 
             {/*SUBMIT*/}

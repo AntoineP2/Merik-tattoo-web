@@ -88,7 +88,7 @@ export const recapMailCustom = ({
                     </Text>
                     {image && (
                       <img
-                        src={URL.createObjectURL(image as Blob)}
+                        src={image}
                         alt="Prévisualisation"
                         className="mt-4 max-w-xs"
                       />

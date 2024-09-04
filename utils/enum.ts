@@ -59,7 +59,7 @@ export type CustomTattooFormMailInputs = {
   placement: PLACEMENT_ENUM;
   disponibility: DISPONIBILITY_ENUM;
   size: TATTOO_SIZE_ENUM;
-  image: Blob | null;
+  image: string | null;
 };
 
 export type TattoosListType = {

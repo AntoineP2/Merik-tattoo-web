@@ -47,7 +47,7 @@ const CustomTattooForm = () => {
         size,
         placement,
         disponibility,
-        image,
+        image: image ? URL.createObjectURL(image) : null,
       });
       setSubmitLoading(false);
       toast.success("Ta demande de réservation a bien été envoyé");

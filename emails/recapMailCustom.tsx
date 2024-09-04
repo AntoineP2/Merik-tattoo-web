@@ -1,5 +1,4 @@
 import {
-  CustomTattooFormInputs,
   CustomTattooFormMailInputs,
   DISPONIBILITY_ENUM,
   PLACEMENT_ENUM,
@@ -42,7 +41,7 @@ export const recapMailCustom = ({
           <Container className="mb-28">
             <Section>
               <Img
-                src="https://i.ibb.co/CMLS7Dy/logo-merik.png"
+                src="https://i.postimg.cc/cHChQYSM/logo-merik.png"
                 alt="logo"
                 width="100"
                 className="my-0 mx-auto"
@@ -56,7 +55,7 @@ export const recapMailCustom = ({
                     Tattoo
                     <strong className="text-purple-400"> Personnalisé</strong>
                   </Heading>
-                  <Container className="bg-[#430050] rounded-lg shadow-lg">
+                  <Container className="bg-[#430050] rounded-lg shadow-lg mb-10">
                     <Text className="pl-20 text-md">
                       <span className="font-bold mr-4">Nom : </span>{" "}
                       <span>
@@ -89,7 +88,7 @@ export const recapMailCustom = ({
                     </Text>
                     {image && (
                       <img
-                        src={image}
+                        src={URL.createObjectURL(image as Blob)}
                         alt="Prévisualisation"
                         className="mt-4 max-w-xs"
                       />
@@ -115,7 +114,7 @@ recapMailCustom.PreviewProps = {
   disponibility: DISPONIBILITY_ENUM.THREE_MONTHS,
   description:
     "Excogitatum est super his, ut homines quidam ignoti, vilitate ipsa parum cavendi ad colligendos rumores per Antiochiae latera cuncta destinarentur relaturi quae audirent. hi peragranter et dissimulanter honoratorum circulis adsistendo pervadendoque divites domus egentium habitu quicquid noscere poterant vel audire latenter intromissi per posticas in regiam nuntiabant, id observantes conspiratione concordi, ut fingerent quaedam et cognita duplicarent in peius, laudes vero supprimerent Caesaris, quas invitis conpluribus formido malorum inpendentium exprimebat.",
-} as CustomTattooFormInputs;
+} as CustomTattooFormMailInputs;
 
 export default recapMailCustom;
 

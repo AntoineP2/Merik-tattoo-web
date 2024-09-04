@@ -343,10 +343,11 @@ const CustomTattooForm = () => {
                   <img
                     src={image}
                     alt="Prévisualisation"
-                    className="mt-4 max-w-xs"
+                    className="mt-4 max-w-xs hidden md:block"
                   />
                 )}
               </div>
+
             </div>
 
             {/*SUBMIT*/}

@@ -18,7 +18,7 @@ export async function POST(req: Request, res: Response) {
 
   const { data, error } = await resend.emails.send({
     from: "onboarding@resend.dev",
-    to: "antoine.vinsonneau34@gmail.com", // A changer en mail quand on auras le nom de domaine
+    to: "merikos.mi.corazon@hotmail.com", // A changer en mail quand on auras le nom de domaine
     subject: `Validation formulaire ${name}`,
     react: Email({
       name,

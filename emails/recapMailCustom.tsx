@@ -15,6 +15,7 @@ import {
   Img,
   Preview,
   Row,
+  Link,
   Section,
   Text,
   Tailwind,
@@ -32,6 +33,8 @@ export const recapMailCustom = ({
   disponibility,
   image,
 }: CustomTattooFormMailInputs) => {
+
+
   return (
     <Html>
       <Head />
@@ -87,11 +90,16 @@ export const recapMailCustom = ({
                       <span>{disponibility}</span>
                     </Text>
                     {image && (
-                      <Img
-                        src={image}
-                        alt="Prévisualisation"
-                        className="mt-4 max-w-xs"
-                      />
+                      <>
+                        <Img
+                          src={image}
+                          alt="Prévisualisation"
+                          className="mt-4 max-w-xs"
+                        />
+                        <Link href={image} download="image.png">
+                          Télécharger l'image
+                        </Link >
+                      </>
                     )}
                   </Container>
                 </Column>

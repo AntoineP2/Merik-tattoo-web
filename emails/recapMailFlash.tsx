@@ -43,7 +43,7 @@ export const recapMailFlash = ({
           <Container className="mb-28">
             <Section>
               <Img
-                src="https://i.ibb.co/CMLS7Dy/logo-merik.png"
+                src="https://i.postimg.cc/cHChQYSM/logo-merik.png"
                 alt="logo"
                 width="100"
                 className="my-0 mx-auto"

@@ -8,6 +8,7 @@ import lettrageTattooCare from "../public/lettrage-tattoo-care.png";
 import Image from "next/image";
 import HomeContact from "./components/homePage/HomeContact";
 import TattooCare from "./components/homePage/TattooCare";
+import DivHome from "./components/homePage/DivHome";
 
 export default function Home() {
   return (
@@ -16,22 +17,12 @@ export default function Home() {
         <Image src={lettragePresentation} alt="lettrage" width={150} />
       </div>
       <div className="flex flex-col gap-7 mb-14">
-        <div className="mb-5 md:mb-14">
-          <div className="divider divider-primary">
-            <h1 className="md:text-lg text-md font-bold text-primary">
-              Qui est Merikos ?
-            </h1>
-          </div>
+        <DivHome title="Qui est Merikos ?">
           <Description />
-        </div>
-        <div>
-          <div className="divider divider-primary">
-            <h1 className="md:text-lg text-md font-bold text-primary">
-              Son tattoo style
-            </h1>
-          </div>
+        </DivHome>
+        <DivHome title="Son tattoo Style">
           <TattooDescription />
-        </div>
+        </DivHome>
       </div>
       <div className="flex justify-center items-center">
         <Image src={lettrageTattooList} alt="lettrage" width={150} />

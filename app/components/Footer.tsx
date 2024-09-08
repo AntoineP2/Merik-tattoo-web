@@ -25,8 +25,8 @@ const Footer = () => {
             <nav className="md:place-self-center md:justify-self-end mt-7 md:mt-0">
                 <div className="flex justify-center items-center gap-4 ">
                     <button onClick={() => router.push("/booking")}><MdEmail size={25} /></button>
-                    <Link href="https://www.instagram.com/merikos.mi.corazon/"><IoLogoInstagram size={25} /></Link>
-                    <Link href="https://www.facebook.com/merikmaldito"><FaFacebook size={25} /></Link>
+                    <Link href="https://www.instagram.com/merikos.mi.corazon/" target='_blank' ><IoLogoInstagram size={25} /></Link>
+                    <Link href="https://www.facebook.com/merikmaldito" target='_blank'><FaFacebook size={25} /></Link>
                 </div>
             </nav>
         </footer>

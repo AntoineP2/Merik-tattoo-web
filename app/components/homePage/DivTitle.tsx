@@ -3,11 +3,10 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
-const DivHome = ({
-    children, title
+const DivTitle = ({
+    children
 }: Readonly<{
     children: React.ReactNode;
-    title: string;
 }>) => {
     const { ref, inView } = useInView({
         triggerOnce: true,
@@ -29,16 +28,11 @@ const DivHome = ({
                 variants={variants}
                 initial="hidden"
                 animate={inView ? "visible" : "hidden"}
-                className="mb-5 md:mb-14">
-                <div className="divider divider-primary">
-                    <h1 className="md:text-lg text-md font-bold text-primary">
-                        {title}
-                    </h1>
-                </div>
+                className="flex justify-center items-center mb-10">
                 {children}
             </motion.div>
         </>
     )
 }
 
-export default DivHome
+export default DivTitle

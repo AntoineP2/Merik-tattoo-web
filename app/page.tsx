@@ -9,13 +9,15 @@ import Image from "next/image";
 import HomeContact from "./components/homePage/HomeContact";
 import TattooCare from "./components/homePage/TattooCare";
 import DivHome from "./components/homePage/DivHome";
+import DivTitle from "./components/homePage/DivTitle";
 
 export default function Home() {
   return (
     <main>
-      <div className="flex justify-center items-center mb-10">
+      <DivTitle>
         <Image src={lettragePresentation} alt="lettrage" width={150} />
-      </div>
+      </DivTitle>
+
       <div className="flex flex-col gap-7 mb-14">
         <DivHome title="Qui est Merikos ?">
           <Description />
@@ -24,22 +26,22 @@ export default function Home() {
           <TattooDescription />
         </DivHome>
       </div>
-      <div className="flex justify-center items-center">
+      <DivTitle>
         <Image src={lettrageTattooList} alt="lettrage" width={150} />
-      </div>
+      </DivTitle>
       <div className="flex justify-center items-center mt-10">
         <ListTattoo />
       </div>
       <div className="mt-14">
-        <div className="flex justify-center items-center">
+        <DivTitle>
           <Image src={lettrageContact} alt="lettrage" width={150} />
-        </div>
+        </DivTitle>
         <HomeContact />
       </div>
       <div className="mt-14">
-        <div className="flex justify-center items-center">
+        <DivTitle>
           <Image src={lettrageTattooCare} alt="lettrage" width={150} />
-        </div>
+        </DivTitle>
         <TattooCare />
       </div>
     </main>

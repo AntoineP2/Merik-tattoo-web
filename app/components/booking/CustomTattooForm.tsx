@@ -1,6 +1,7 @@
 "use client";
 import {
   CustomTattooFormInputs,
+  DayPreference,
   DISPONIBILITY_ENUM,
   PLACEMENT_ENUM,
   TATTOO_SIZE_ENUM,
@@ -9,7 +10,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { FaLongArrowAltDown, FaPhoneAlt, FaUser } from "react-icons/fa";
+import { FaInstagram, FaLongArrowAltDown, FaUser } from "react-icons/fa";
 import { IoIosArrowBack, IoMdMail } from "react-icons/io";
 import { toast } from "sonner";
 
@@ -30,10 +31,11 @@ const CustomTattooForm = () => {
         name,
         surname,
         email,
-        phone,
+        instagram,
         description,
         size,
         placement,
+        dayOfWeek,
         disponibility,
       } = data;
       setSubmitLoading(true);
@@ -42,9 +44,10 @@ const CustomTattooForm = () => {
         name,
         surname,
         email,
-        phone,
+        instagram,
         description,
         size,
+        dayOfWeek,
         placement,
         disponibility,
         image
@@ -150,7 +153,7 @@ const CustomTattooForm = () => {
                   )}
                   {errors.surname?.type === "maxLength" && (
                     <span className="text-error text-xs">
-                      Le prénomn est trop long
+                      Le prénom est trop long
                     </span>
                   )}
                 </div>
@@ -194,26 +197,26 @@ const CustomTattooForm = () => {
               {/*Phone*/}
               <div>
                 <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
-                  <FaPhoneAlt size={15} className="text-accent" />
+                  <FaInstagram size={15} className="text-accent" />
                   <input
                     disabled={submitLoading}
                     type="text"
                     className="grow"
-                    placeholder="Numéro de téléphone"
-                    {...register("phone", {
+                    placeholder="Ton Instagram"
+                    {...register("instagram", {
                       required: true,
-                      pattern: /^[0-9]+$/,
+                      pattern: /^[a-zA-Z0-9._]+$/, // Pattern pour un pseudo Instagram valide
                     })}
                   />
                 </label>
-                {errors.phone?.type === "pattern" && (
+                {errors.instagram?.type === "pattern" && (
                   <span className="text-error text-xs">
-                    Le numéro doit être valide
+                    Le pseudo doit contenir uniquement des lettres, chiffres, points ou underscores
                   </span>
                 )}
-                {errors.phone?.type === "required" && (
+                {errors.instagram?.type === "required" && (
                   <span className="text-error text-xs">
-                    Le numéro est obligatoire
+                    Le pseudo Instagram est obligatoire
                   </span>
                 )}
               </div>
@@ -222,28 +225,43 @@ const CustomTattooForm = () => {
             {/*------------------------  Reference, Placement, Disponibility, Image -----------------------------*/}
             <div className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
               <div>
-                {/*Placement*/}
+                {/*Emplacement*/}
                 <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
                   <h2 className="text-md font-bold text-accent md:ml-2">
                     {" "}
-                    Selectionne ton emplacement
+                    Emplacement du Tattoo
                   </h2>
                 </div>
-                <select
-                  disabled={submitLoading}
-                  className="select select-primary w-full bg-base-300 select-sm"
-                  {...register("placement", { required: true })}
-                >
-                  <option value="" disabled>
-                    Selectionne ton emplacement
-                  </option>
-                  {Object.values(PLACEMENT_ENUM).map((placement) => (
-                    <option key={placement} value={placement}>
-                      {placement}
-                    </option>
-                  ))}
-                </select>
+                <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
+                  <input
+                    disabled={submitLoading}
+                    type="text"
+                    placeholder="Ton emplacement de tatouage"
+                    {...register("placement", {
+                      required: true,
+                      maxLength: 300,
+                      pattern: /^[A-Za-z0-9!@#$_/\s\-,\.]+$/,
+                    })}
+                    className="w-full"
+                  />
+                </label>
+                {errors.surname?.type === "pattern" && (
+                  <span className="text-error text-xs">
+                    Le prénom doit être composé de lettre uniquement
+                  </span>
+                )}
+                {errors.surname?.type === "required" && (
+                  <span className="text-error text-xs">
+                    Le prénom est obligatoire
+                  </span>
+                )}
+                {errors.surname?.type === "maxLength" && (
+                  <span className="text-error text-xs">
+                    Le prénom est trop long
+                  </span>
+                )}
               </div>
+
               <div>
                 {/*Taille*/}
                 <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
@@ -295,13 +313,47 @@ const CustomTattooForm = () => {
                   ))}
                 </select>
               </div>
-              <div className="pt-5">
+
+              <div>
+                {/*DayPreference*/}
+                <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
+                  <h2 className="text-md font-bold text-accent md:ml-2">
+                    {" "}
+                    Tu préfère quel jour de la semaine ?
+                  </h2>
+                </div>
+
+                <select
+                  disabled={submitLoading}
+                  className="select select-primary w-full bg-base-300 select-sm"
+                  {...register("dayOfWeek", {
+                    required: true,
+                    value: undefined,
+                  })}
+                >
+                  <option value="" disabled>
+                    Ton jour de la semaine péférentiel ?
+                  </option>
+                  {DayPreference.map((dayOfWeek) => (
+                    <option key={dayOfWeek} value={dayOfWeek}>
+                      {dayOfWeek}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
                 {/*Description*/}
+                <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
+                  <h2 className="text-md font-bold text-accent md:ml-2">
+                    Description du tattoo
+                  </h2>
+                </div>
                 <label className=" bg-base-300 flex items-center gap-2">
                   <textarea
                     disabled={submitLoading}
                     className="grow textarea textarea-textarea textarea-sm textarea-primary bg-base-300"
-                    placeholder="Décrit ton projet en quelques mots"
+                    placeholder="Décrit ton projet au maximum, taille, style, emplacement, couleur, etc..."
                     {...register("description", {
                       required: true,
                       maxLength: 10000,

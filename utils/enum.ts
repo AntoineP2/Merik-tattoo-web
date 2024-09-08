@@ -11,6 +11,16 @@ export enum DISPONIBILITY_ENUM {
   MORE = "Dans plus de 3 mois",
 }
 
+export const DayPreference: string[] = [
+  "Lundi",
+  "Mardi",
+  "Mercredi",
+  "Jeudi",
+  "Vendredi",
+  "Samedi",
+  "Peu importe",
+];
+
 export enum PLACEMENT_ENUM {
   ARM = "Bras",
   LEG = "Jambe",
@@ -35,7 +45,7 @@ export type FlashFormInputs = {
   email: string;
   phone: string;
   reference: string;
-  placement: PLACEMENT_ENUM;
+  placement: string;
   disponibility: DISPONIBILITY_ENUM;
 };
 
@@ -43,9 +53,10 @@ export type CustomTattooFormInputs = {
   name: string;
   surname: string;
   email: string;
-  phone: string;
+  instagram: string;
   description: string;
-  placement: PLACEMENT_ENUM;
+  dayOfWeek: string;
+  placement: string;
   disponibility: DISPONIBILITY_ENUM;
   size: TATTOO_SIZE_ENUM;
 };
@@ -54,10 +65,11 @@ export type CustomTattooFormMailInputs = {
   name: string;
   surname: string;
   email: string;
-  phone: string;
+  instagram: string;
   description: string;
-  placement: PLACEMENT_ENUM;
+  placement: string;
   disponibility: DISPONIBILITY_ENUM;
+  dayOfWeek: string;
   size: TATTOO_SIZE_ENUM;
   image: string | null;
 };

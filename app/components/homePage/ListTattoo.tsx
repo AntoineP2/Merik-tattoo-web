@@ -1,38 +1,61 @@
+"use client"
 import Image from "next/image";
 import merikAction from "../../../public/merikAction.jpg";
 import { TattoosListType } from "@/utils/enum";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
+const tattoosList: TattoosListType[] = [
+  {
+    id: 1,
+    description: "Description 1",
+    image: merikAction,
+  },
+  {
+    id: 2,
+    description: "Description 2",
+    image: merikAction,
+  },
+  {
+    id: 3,
+    description: "Description 3",
+    image: merikAction,
+  },
+  {
+    id: 4,
+    description: "Description 4",
+    image: merikAction,
+  },
+  {
+    id: 5,
+    description: "Description 5",
+    image: merikAction,
+  },
+];
 
 const ListTattoo = () => {
-  const tattoosList: TattoosListType[] = [
-    {
-      id: 1,
-      description: "Description 1",
-      image: merikAction,
+
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
+  const variants = {
+    hidden: { opacity: 0, x: 150 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
     },
-    {
-      id: 2,
-      description: "Description 2",
-      image: merikAction,
-    },
-    {
-      id: 3,
-      description: "Description 3",
-      image: merikAction,
-    },
-    {
-      id: 4,
-      description: "Description 4",
-      image: merikAction,
-    },
-    {
-      id: 5,
-      description: "Description 5",
-      image: merikAction,
-    },
-  ];
+  };
 
   return (
-    <div className="collapse bg-base-300 border border-primary shadow-sm shadow-primary md:w-[70vw]">
+    <motion.div
+      ref={ref}
+      variants={variants}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      className="collapse bg-base-300 border border-primary shadow-sm shadow-primary md:w-[70vw]">
       <input type="checkbox" className="peer" />
       <div className="collapse-title bg-primary peer-checked:bg-primary ">
         <p className="font-bold flex justify-center items-center">
@@ -54,7 +77,7 @@ const ListTattoo = () => {
           })}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

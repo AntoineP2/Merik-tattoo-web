@@ -1,16 +1,36 @@
 "use client";
-
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 const HomeContact = () => {
   const router = useRouter();
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
+  const variants = {
+    hidden: { opacity: 0, x: 150 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
 
   const handleClickReservations = () => {
     router.push("/booking");
   };
+
   return (
     <>
-      <div className="flex flex-col flex-wrap gap-5 items-center md:justify-around md:items-center mt-8 md:mt-10">
+      <motion.div
+        ref={ref}
+        variants={variants}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        className="flex flex-col flex-wrap gap-5 items-center md:justify-around md:items-center mt-8 md:mt-10">
         <div className="flex flex-col gap-3 bg-base-300 rounded-md py-3 px-2 border border-primary shadow-sm shadow-primary md:w-[40vw] w-[80vw]">
           <p>
             Es-tu intéressé par ce que tu as vu ? Souhaites-tu toi aussi avoir
@@ -36,7 +56,7 @@ const HomeContact = () => {
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

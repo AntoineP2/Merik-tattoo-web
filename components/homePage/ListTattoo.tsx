@@ -1,6 +1,6 @@
 "use client"
 import Image from "next/image";
-import merikAction from "../../../public/merikAction.jpg";
+import merikAction from "../../public/merikAction.jpg";
 import { TattoosListType } from "@/utils/enum";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -62,7 +62,7 @@ const ListTattoo = () => {
           Clique pour voir les Tattos
         </p>
       </div>
-      <div className="collapse-content bg-base-300  peer-checked:bg-base-300">
+      <div className="collapse-content bg-base-300 peer-checked:bg-base-300">
         <div className="flex flex-col gap-3 md:gap-5 md:flex-row md:flex-wrap justify-center items-center pt-2">
           {tattoosList.map((tattoo) => {
             return (

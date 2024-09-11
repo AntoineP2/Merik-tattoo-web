@@ -1,5 +1,5 @@
 import Image from "next/image";
-import merikAction from "../../../public/merikAction.jpg";
+import merikAction from "../../public/merikAction.jpg";
 
 const TattooDescription = () => {
   return (

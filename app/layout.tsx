@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Footer from "./components/Footer";
-import Navigation from "./components/header/Navigation";
+import Footer from "../components/Footer";
+import Navigation from "../components/header/Navigation";
 import { Toaster } from "sonner";
 import StoreProvider from "./storeProvider";
 import BodyWrapper from "./BodyWrapper";

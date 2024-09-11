@@ -1,4 +1,4 @@
-import CustomTattooForm from '@/app/components/booking/CustomTattooForm'
+import CustomTattooForm from '@/components/booking/CustomTattooForm'
 import Image from 'next/image'
 import customImage from "../../../public/custom-tattoo.png"
 

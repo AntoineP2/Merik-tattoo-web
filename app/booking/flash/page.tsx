@@ -1,4 +1,4 @@
-import FlashForm from '@/app/components/booking/FlashForm'
+import FlashForm from '@/components/booking/FlashForm'
 import Image from 'next/image'
 import flashImage from "../../../public/flash.png"
 

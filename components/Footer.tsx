@@ -1,6 +1,6 @@
 "use client"
 import Image from 'next/image'
-import logo from '../../public/logo-merik.png'
+import logo from '../public/logo-merik.png'
 import { MdEmail, MdPlace } from 'react-icons/md'
 import { IoLogoInstagram } from 'react-icons/io'
 import { FaFacebook } from 'react-icons/fa'

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import merikProfil from "../../../public/merikProfil.jpg";
+import merikProfil from "../../public/merikProfil.jpg";
 
 const Description = () => {
   return (

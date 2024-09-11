@@ -92,8 +92,8 @@ const CustomTattooForm = () => {
     const maxSize = 5 * 1024 * 1024
     if (file && file.size > maxSize) {
       toast.error("L'image est trop lourde, veuillez choisir une image de moins de 5Mo")
-      // setImage(null)
-      // return
+      setImage(null)
+      return
     }
     if (file && (file.type === "image/png" || file.type === "image/jpeg" || file.type === "image/jpg" || file.type === "image/gif")) {
       const reader = new FileReader();
@@ -389,24 +389,23 @@ const CustomTattooForm = () => {
                     {...register("description", {
                       required: true,
                       maxLength: 10000,
-                      pattern: /^[A-Za-z0-9!@#$_/\s\-,\.]+$/,
+                      pattern: /^[A-Za-zÀ-ÿ0-9!@#$_/\s\-,\.]+$/,
                     })}
                   />
                 </label>
                 {errors.description?.type === "required" && (
                   <span className="text-error text-xs">
-                    La référence est obligatoire
+                    La déscription est obligatoire
                   </span>
                 )}
                 {errors.description?.type === "maxLength" && (
                   <span className="text-error text-xs">
-                    La référence est trop longue
+                    La déscription est trop longue
                   </span>
                 )}
                 {errors.description?.type === "pattern" && (
                   <span className="text-error text-xs">
-                    La référence doit être composée de lettre et de chiffre
-                    uniquement
+                    La déscription ne doit pas contenir de caractères spéciaux
                   </span>
                 )}
               </div>

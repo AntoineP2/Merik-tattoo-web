@@ -59,7 +59,7 @@ const ListTattoo = () => {
       <input type="checkbox" className="peer" />
       <div className="collapse-title bg-primary peer-checked:bg-primary ">
         <p className="font-bold flex justify-center items-center">
-          Clique pour voir les Tattos
+          Clique pour voir les Tattoos
         </p>
       </div>
       <div className="collapse-content bg-base-300 peer-checked:bg-base-300">

@@ -7,17 +7,38 @@ import {
   TATTOO_SIZE_ENUM,
 } from "@/utils/enum";
 import axios from "axios";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FaInstagram, FaLongArrowAltDown, FaUser } from "react-icons/fa";
 import { IoIosArrowBack, IoMdMail } from "react-icons/io";
+import { useInView } from "react-intersection-observer";
 import { toast } from "sonner";
 
 const CustomTattooForm = () => {
   const [image, setImage] = useState<string | null>(null);
   const [submitLoading, setSubmitLoading] = useState(false);
   const router = useRouter();
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+
+  const variantsList = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const variantsItem = {
+    hidden: { opacity: 0, x: 35 },
+    visible: { opacity: 1, x: 0 },
+  };
 
   const {
     register,
@@ -91,9 +112,14 @@ const CustomTattooForm = () => {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="flex flex-col gap-5">
+          <motion.div
+            ref={ref}
+            variants={variantsList}
+            initial="hidden"
+            animate={inView ? "visible" : "hidden"}
+            className="flex flex-col gap-5">
             {/*------------------------  Nom et prénom -----------------------------*/}
-            <div className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
+            <motion.div variants={variantsItem} className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
               <div className="flex flex-col gap-3">
                 <div>
                   {/*Nom*/}
@@ -158,10 +184,10 @@ const CustomTattooForm = () => {
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
 
             {/*------------------------  phone et mail  -----------------------------*/}
-            <div className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
+            <motion.div variants={variantsItem} className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
               {/*Mail*/}
               <div>
                 <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
@@ -220,10 +246,10 @@ const CustomTattooForm = () => {
                   </span>
                 )}
               </div>
-            </div>
+            </motion.div>
 
             {/*------------------------  Reference, Placement, Disponibility, Image -----------------------------*/}
-            <div className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
+            <motion.div variants={variantsItem} className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
               <div>
                 {/*Emplacement*/}
                 <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
@@ -399,11 +425,10 @@ const CustomTattooForm = () => {
                   />
                 )}
               </div>
-
-            </div>
+            </motion.div>
 
             {/*SUBMIT*/}
-            <div className="flex justify-between mt-2">
+            <motion.div variants={variantsItem} className="flex justify-between mt-2">
               <button
                 onClick={handleClickBack}
                 className="btn btn-active btn-secondary btn-sm hover:scale-105 active:scale-95"
@@ -420,8 +445,8 @@ const CustomTattooForm = () => {
                   "Envoyer"
                 )}
               </button>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </form>
       </div>
     </>

@@ -92,6 +92,7 @@ const CustomTattooForm = () => {
     const maxSize = 5 * 1024 * 1024
     if (file && file.size > maxSize) {
       toast.error("L'image est trop lourde, veuillez choisir une image de moins de 5Mo")
+      setImage(null)
       return
     }
     if (file && (file.type === "image/png" || file.type === "image/jpeg" || file.type === "image/jpg" || file.type === "image/gif")) {

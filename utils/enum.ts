@@ -46,6 +46,7 @@ export type FlashFormInputs = {
   phone: string;
   reference: string;
   placement: string;
+  dayOfWeek: string;
   disponibility: DISPONIBILITY_ENUM;
 };
 

@@ -21,6 +21,7 @@ interface recapMailFlashProps {
   email?: string;
   phone?: string;
   reference?: string;
+  dayOfWeek?: string;
   placement?: PLACEMENT_ENUM;
   disponibility?: DISPONIBILITY_ENUM;
 }
@@ -33,6 +34,7 @@ export const recapMailFlash = ({
   reference,
   placement,
   disponibility,
+  dayOfWeek,
 }: recapMailFlashProps) => {
   return (
     <Html>
@@ -81,6 +83,10 @@ export const recapMailFlash = ({
                       <span>{disponibility}</span>
                     </Text>
                     <Text className="pl-20 text-md">
+                      <span className="font-bold mr-4">Jour de la semaine : </span>{" "}
+                      <span>{dayOfWeek}</span>
+                    </Text>
+                    <Text className="pl-20 text-md">
                       <span className="font-bold mr-4">Référence : </span>{" "}
                       <span>{reference}</span>
                     </Text>
@@ -101,6 +107,7 @@ recapMailFlash.PreviewProps = {
   email: "antoinePado@gmail.com",
   phone: "0606060606",
   reference: "AEZ89D",
+  dayOfWeek: "Lundi",
   placement: PLACEMENT_ENUM.ARM,
   disponibility: DISPONIBILITY_ENUM.THREE_MONTHS,
 } as recapMailFlashProps;

@@ -1,5 +1,6 @@
 "use client";
 import {
+  DayPreference,
   DISPONIBILITY_ENUM,
   FlashFormInputs,
   PLACEMENT_ENUM,
@@ -57,6 +58,7 @@ const FlashForm = () => {
         phone,
         reference,
         placement,
+        dayOfWeek,
         disponibility,
       } = data;
       setSubmitLoading(true);
@@ -68,6 +70,7 @@ const FlashForm = () => {
         phone,
         reference,
         placement,
+        dayOfWeek,
         disponibility,
       });
       setSubmitLoading(false);
@@ -306,6 +309,34 @@ const FlashForm = () => {
                   {Object.values(DISPONIBILITY_ENUM).map((disponibility) => (
                     <option key={disponibility} value={disponibility}>
                       {disponibility}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                {/*DayPreference*/}
+                <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
+                  <h2 className="text-md font-bold text-accent md:ml-2">
+                    {" "}
+                    Tu préfère quel jour de la semaine ?
+                  </h2>
+                </div>
+
+                <select
+                  disabled={submitLoading}
+                  className="select select-primary w-full bg-base-300 select-sm"
+                  {...register("dayOfWeek", {
+                    required: true,
+                    value: undefined,
+                  })}
+                >
+                  <option value="" disabled>
+                    Ton jour de la semaine péférentiel ?
+                  </option>
+                  {DayPreference.map((dayOfWeek) => (
+                    <option key={dayOfWeek} value={dayOfWeek}>
+                      {dayOfWeek}
                     </option>
                   ))}
                 </select>

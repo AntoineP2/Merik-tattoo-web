@@ -11,7 +11,7 @@ import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { FaInstagram, FaLongArrowAltDown, FaUser } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaLongArrowAltDown, FaUser } from "react-icons/fa";
 import { IoIosArrowBack, IoMdMail } from "react-icons/io";
 import { useInView } from "react-intersection-observer";
 import { toast } from "sonner";
@@ -21,6 +21,8 @@ const CustomTattooForm = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
   const router = useRouter();
   const [daysOfWeek, setDaysOfWeek] = useState<string[]>([]);
+  const [instagramChoice, setInstagramChoice] = useState(false);
+  const [facebookChoice, setFacebookChoice] = useState(false);
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -62,6 +64,7 @@ const CustomTattooForm = () => {
         surname,
         email,
         instagram,
+        facebook,
         description,
         size,
         placement,
@@ -73,7 +76,8 @@ const CustomTattooForm = () => {
         name,
         surname,
         email,
-        instagram,
+        instagram: instagramChoice ? instagram : "Non renseigné",
+        facebook: facebookChoice ? facebook : "Non renseigné",
         description,
         size,
         daysOfWeek,
@@ -132,9 +136,15 @@ const CustomTattooForm = () => {
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
             className="flex flex-col gap-5">
-            {/*------------------------  Nom et prénom -----------------------------*/}
+            {/*------------------------  Info Perso -----------------------------*/}
             <motion.div variants={variantsItem} className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
               <div className="flex flex-col gap-3">
+                <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
+                  <h1 className="text-lg font-bold md:ml-2 text-primary">
+                    {" "}
+                    Tes informations personnelles
+                  </h1>
+                </div>
                 <div>
                   {/*Nom*/}
                   <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
@@ -145,7 +155,7 @@ const CustomTattooForm = () => {
                       placeholder="Nom"
                       {...register("name", {
                         required: true,
-                        pattern: /^[A-Za-z]+$/,
+                        pattern: /^[A-Za-zÀ-ÖØ-öø-ÿ0-9_\-\.\s]+$/,
                         maxLength: 20,
                       })}
                     />
@@ -176,7 +186,7 @@ const CustomTattooForm = () => {
                       placeholder="Prénom"
                       {...register("surname", {
                         required: true,
-                        pattern: /^[A-Za-z]+$/,
+                        pattern: /^[A-Za-zÀ-ÖØ-öø-ÿ0-9_\-\.\s]+$/,
                         maxLength: 20,
                       })}
                     />
@@ -197,73 +207,129 @@ const CustomTattooForm = () => {
                     </span>
                   )}
                 </div>
+                {/*Mail*/}
+                <div>
+                  <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
+                    <IoMdMail size={15} className="text-accent" />
+                    <input
+                      disabled={submitLoading}
+                      type="text"
+                      className="grow"
+                      placeholder="Adresse mail"
+                      {...register("email", {
+                        required: true,
+                        pattern: /^\S+@\S+$/i,
+                        maxLength: 50,
+                      })}
+                    />
+                  </label>
+                  {errors.email?.type === "pattern" && (
+                    <span className="text-error text-xs">
+                      Le mail doit être valide
+                    </span>
+                  )}
+                  {errors.email?.type === "required" && (
+                    <span className="text-error text-xs">
+                      Le mail est obligatoire
+                    </span>
+                  )}
+                  {errors.email?.type === "maxLength" && (
+                    <span className="text-error text-xs">
+                      Le mail est trop long
+                    </span>
+                  )}
+                </div>
               </div>
             </motion.div>
 
             {/*------------------------  phone et mail  -----------------------------*/}
             <motion.div variants={variantsItem} className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
-              {/*Mail*/}
-              <div>
-                <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
-                  <IoMdMail size={15} className="text-accent" />
-                  <input
-                    disabled={submitLoading}
-                    type="text"
-                    className="grow"
-                    placeholder="Adresse mail"
-                    {...register("email", {
-                      required: true,
-                      pattern: /^\S+@\S+$/i,
-                      maxLength: 50,
-                    })}
-                  />
-                </label>
-                {errors.email?.type === "pattern" && (
-                  <span className="text-error text-xs">
-                    Le mail doit être valide
-                  </span>
-                )}
-                {errors.email?.type === "required" && (
-                  <span className="text-error text-xs">
-                    Le mail est obligatoire
-                  </span>
-                )}
-                {errors.email?.type === "maxLength" && (
-                  <span className="text-error text-xs">
-                    Le mail est trop long
-                  </span>
-                )}
+              <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
+                <h1 className="text-lg font-bold md:ml-2 text-primary">
+                  {" "}
+                  Tes reseaux sociaux
+                </h1>
               </div>
-              {/*Phone*/}
-              <div>
+              <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
+                <h1 className="text-md font-bold md:ml-2 text-accent">
+                  {" "}
+                  Selectionne tes reseaux sociaux
+                </h1>
+              </div>
+              <div className="flex justify-center max-md:justify-evenly items-center gap-2 mt-5">
+                <div className="flex flex-col gap-2 justify-center items-center">
+                  <FaInstagram size={35} />
+                  <input type="checkbox" className="checkbox" onChange={() => setInstagramChoice(!instagramChoice)} />
+                </div>
+                <div className="flex flex-col gap-2 justify-center items-center">
+                  <FaFacebook size={35} />
+                  <input type="checkbox" className="checkbox" onChange={() => setFacebookChoice(!facebookChoice)} />
+                </div>
+
+              </div>
+              {/*Instagram*/}
+              {instagramChoice && <div>
                 <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
                   <FaInstagram size={15} className="text-accent" />
                   <input
                     disabled={submitLoading}
                     type="text"
                     className="grow"
-                    placeholder="Ton Instagram"
+                    placeholder="Instagram"
                     {...register("instagram", {
-                      required: true,
-                      pattern: /^[a-zA-Z0-9._]+$/, // Pattern pour un pseudo Instagram valide
+                      required: false,
+                      maxLength: 30,
+                      pattern: /^[A-Za-zÀ-ÖØ-öø-ÿ0-9_\-\.\s]+$/,
                     })}
                   />
                 </label>
                 {errors.instagram?.type === "pattern" && (
                   <span className="text-error text-xs">
-                    Le pseudo doit contenir uniquement des lettres, chiffres, points ou underscores
+                    Ton pseudo instagram comprend des caractères interdit
                   </span>
                 )}
-                {errors.instagram?.type === "required" && (
+                {errors.instagram?.type === "maxLength" && (
                   <span className="text-error text-xs">
-                    Le pseudo Instagram est obligatoire
+                    Le pseudo instagram est trop long
                   </span>
                 )}
-              </div>
+              </div>}
+              {facebookChoice && <div>
+                <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
+                  <FaFacebook size={15} className="text-accent" />
+                  <input
+                    disabled={submitLoading}
+                    type="text"
+                    className="grow"
+                    placeholder="Facebook"
+                    {...register("facebook", {
+                      required: false,
+                      maxLength: 30,
+                      pattern: /^[A-Za-zÀ-ÖØ-öø-ÿ0-9_\-\.\s]+$/,
+                    })}
+                  />
+                </label>
+                {errors.instagram?.type === "pattern" && (
+                  <span className="text-error text-xs">
+                    Ton pseudo facebook comprend des caractères interdit
+                  </span>
+                )}
+                {errors.instagram?.type === "maxLength" && (
+                  <span className="text-error text-xs">
+                    Le pseudo facebook est trop long
+                  </span>
+                )}
+              </div>}
             </motion.div>
 
             {/*------------------------  Reference, Placement, Disponibility, Image -----------------------------*/}
             <motion.div variants={variantsItem} className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
+              <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
+                <h1 className="text-lg text-primary font-bold md:ml-2">
+                  {" "}
+                  Le tattoo
+                </h1>
+              </div>
               <div>
                 {/*Emplacement*/}
                 <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
@@ -388,7 +454,7 @@ const CustomTattooForm = () => {
                     {...register("description", {
                       required: true,
                       maxLength: 10000,
-                      pattern: /^[A-Za-zÀ-ÿ0-9!@#$_/\s\-,\.]+$/,
+                      pattern: /^[A-Za-zÀ-ÿ0-9!@#$_/\s\-,\.\(\)\"\'\[\]\{\}\:\;\?]+$/,
                     })}
                   />
                 </label>

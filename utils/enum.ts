@@ -43,7 +43,8 @@ export type FlashFormInputs = {
   name: string;
   surname: string;
   email: string;
-  phone: string;
+  instagram: string;
+  facebook: string;
   reference: string;
   placement: string;
   disponibility: DISPONIBILITY_ENUM;
@@ -54,6 +55,7 @@ export type CustomTattooFormInputs = {
   surname: string;
   email: string;
   instagram: string;
+  facebook: string;
   description: string;
   placement: string;
   disponibility: DISPONIBILITY_ENUM;
@@ -65,6 +67,7 @@ export type CustomTattooFormMailInputs = {
   surname: string;
   email: string;
   instagram: string;
+  facebook: string;
   description: string;
   placement: string;
   disponibility: DISPONIBILITY_ENUM;

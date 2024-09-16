@@ -59,6 +59,9 @@ const Navigation = () => {
             >
               <p>Accueil</p>
             </button>
+            <button className="hover:-translate-y-1 transition duration-300 ease-in-out" onClick={() => handleClickLink("/soin", true)}>
+              <p>Soin</p>
+            </button>
             <button
               onClick={() => handleClickLink("/booking", false)}
               className="hover:-translate-y-1 transition duration-300 ease-in-out"
@@ -70,13 +73,16 @@ const Navigation = () => {
       </div>
       <div
         className={`md:hidden absolute transition ease-in-out duration-150 ${isOpen
-            ? "-z-10 bg-base-200 border-b border-accent"
-            : "-translate-y-32 -z-10 bg-base-100"
+          ? "-z-10 bg-base-200 border-b border-accent"
+          : "-translate-y-32 -z-10 bg-base-100"
           } py-5`}
       >
         <div className="flex flex-col gap-2 items-center w-screen">
           <button onClick={() => handleClickLink("/", true)}>
             <p>Accueil</p>
+          </button>
+          <button onClick={() => handleClickLink("/soin", true)}>
+            <p>Soin</p>
           </button>
           <button onClick={() => handleClickLink("/booking", true)}>
             <p>Booking</p>

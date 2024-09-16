@@ -11,7 +11,9 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {
+  FaFacebook,
   FaHashtag,
+  FaInstagram,
   FaLongArrowAltDown,
   FaPhoneAlt,
   FaUser,
@@ -23,6 +25,8 @@ import { toast } from "sonner";
 const FlashForm = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
   const [daysOfWeek, setDaysOfWeek] = useState<string[]>([]);
+  const [instagramChoice, setInstagramChoice] = useState(false);
+  const [facebookChoice, setFacebookChoice] = useState(false);
   const router = useRouter();
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -65,7 +69,8 @@ const FlashForm = () => {
         name,
         surname,
         email,
-        phone,
+        instagram,
+        facebook,
         reference,
         placement,
         disponibility,
@@ -76,7 +81,8 @@ const FlashForm = () => {
         name,
         surname,
         email,
-        phone,
+        instagram: instagramChoice ? instagram : "Non renseigné",
+        facebook: facebookChoice ? facebook : "Non renseigné",
         reference,
         placement,
         daysOfWeek,
@@ -116,6 +122,12 @@ const FlashForm = () => {
             {/*------------------------  Nom et prénom -----------------------------*/}
             <motion.div variants={variantsItem} className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
               <div className="flex flex-col gap-3">
+                <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
+                  <h1 className="text-lg font-bold md:ml-2 text-primary">
+                    {" "}
+                    Tes informations personnelles
+                  </h1>
+                </div>
                 <div>
                   {/*Nom*/}
                   <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
@@ -126,7 +138,7 @@ const FlashForm = () => {
                       placeholder="Nom"
                       {...register("name", {
                         required: true,
-                        pattern: /^[A-Za-z]+$/,
+                        pattern: /^[A-Za-zÀ-ÖØ-öø-ÿ0-9_\-\.\s]+$/,
                         maxLength: 20,
                       })}
                     />
@@ -157,7 +169,7 @@ const FlashForm = () => {
                       placeholder="Prénom"
                       {...register("surname", {
                         required: true,
-                        pattern: /^[A-Za-z]+$/,
+                        pattern: /^[A-Za-zÀ-ÖØ-öø-ÿ0-9_\-\.\s]+$/,
                         maxLength: 20,
                       })}
                     />
@@ -178,74 +190,130 @@ const FlashForm = () => {
                     </span>
                   )}
                 </div>
+
+                {/*Mail*/}
+                <div>
+                  <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
+                    <IoMdMail size={15} className="text-accent" />
+                    <input
+                      disabled={submitLoading}
+                      type="text"
+                      className="grow"
+                      placeholder="Adresse mail"
+                      {...register("email", {
+                        required: true,
+                        pattern: /^\S+@\S+$/i,
+                        maxLength: 50,
+                      })}
+                    />
+                  </label>
+                  {errors.email?.type === "pattern" && (
+                    <span className="text-error text-xs">
+                      Le mail doit être valide
+                    </span>
+                  )}
+                  {errors.email?.type === "required" && (
+                    <span className="text-error text-xs">
+                      Le mail est obligatoire
+                    </span>
+                  )}
+                  {errors.email?.type === "maxLength" && (
+                    <span className="text-error text-xs">
+                      Le mail est trop long
+                    </span>
+                  )}
+                </div>
               </div>
             </motion.div>
 
-            {/*------------------------  phone et mail  -----------------------------*/}
+            {/*------------------------  reseau  -----------------------------*/}
             <motion.div variants={variantsItem} className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
-              {/*Mail*/}
-              <div>
+              <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
+                <h1 className="text-lg font-bold md:ml-2 text-primary">
+                  {" "}
+                  Tes reseaux sociaux
+                </h1>
+              </div>
+              <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
+                <h1 className="text-md font-bold md:ml-2 text-accent">
+                  {" "}
+                  Selectionne tes reseaux sociaux
+                </h1>
+              </div>
+              <div className="flex justify-center max-md:justify-evenly items-center gap-2 mt-5">
+                <div className="flex flex-col gap-2 justify-center items-center">
+                  <FaInstagram size={35} />
+                  <input type="checkbox" className="checkbox" onChange={() => setInstagramChoice(!instagramChoice)} />
+                </div>
+                <div className="flex flex-col gap-2 justify-center items-center">
+                  <FaFacebook size={35} />
+                  <input type="checkbox" className="checkbox" onChange={() => setFacebookChoice(!facebookChoice)} />
+                </div>
+
+              </div>
+              {/*Instagram*/}
+              {instagramChoice && <div>
                 <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
-                  <IoMdMail size={15} className="text-accent" />
+                  <FaInstagram size={15} className="text-accent" />
                   <input
                     disabled={submitLoading}
                     type="text"
                     className="grow"
-                    placeholder="Adresse mail"
-                    {...register("email", {
-                      required: true,
-                      pattern: /^\S+@\S+$/i,
-                      maxLength: 50,
+                    placeholder="Instagram"
+                    {...register("instagram", {
+                      required: false,
+                      maxLength: 30,
+                      pattern: /^[A-Za-zÀ-ÖØ-öø-ÿ0-9_\-\.\s]+$/,
                     })}
                   />
                 </label>
-                {errors.email?.type === "pattern" && (
+                {errors.instagram?.type === "pattern" && (
                   <span className="text-error text-xs">
-                    Le mail doit être valide
+                    Ton pseudo instagram comprend des caractères interdit
                   </span>
                 )}
-                {errors.email?.type === "required" && (
+                {errors.instagram?.type === "maxLength" && (
                   <span className="text-error text-xs">
-                    Le mail est obligatoire
+                    Le pseudo instagram est trop long
                   </span>
                 )}
-                {errors.email?.type === "maxLength" && (
-                  <span className="text-error text-xs">
-                    Le mail est trop long
-                  </span>
-                )}
-              </div>
-              {/*Phone*/}
-              <div>
+              </div>}
+              {facebookChoice && <div>
                 <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
-                  <FaPhoneAlt size={15} className="text-accent" />
+                  <FaFacebook size={15} className="text-accent" />
                   <input
                     disabled={submitLoading}
                     type="text"
                     className="grow"
-                    placeholder="Numéro de téléphone"
-                    {...register("phone", {
-                      required: true,
-                      pattern: /^[0-9]+$/,
+                    placeholder="Facebook"
+                    {...register("facebook", {
+                      required: false,
+                      maxLength: 30,
+                      pattern: /^[A-Za-zÀ-ÖØ-öø-ÿ0-9_\-\.\s]+$/,
                     })}
                   />
                 </label>
-                {errors.phone?.type === "pattern" && (
+                {errors.instagram?.type === "pattern" && (
                   <span className="text-error text-xs">
-                    Le numéro de téléphone doit être composé de chiffre
-                    uniquement
+                    Ton pseudo facebook comprend des caractères interdit
                   </span>
                 )}
-                {errors.phone?.type === "required" && (
+                {errors.instagram?.type === "maxLength" && (
                   <span className="text-error text-xs">
-                    Le numéro de téléphone est obligatoire
+                    Le pseudo facebook est trop long
                   </span>
                 )}
-              </div>
+              </div>}
             </motion.div>
 
             {/*------------------------  Reference, Placement, Disponibility -----------------------------*/}
             <motion.div variants={variantsItem} className="flex flex-col bg-base-200 rounded-lg shadow-sm p-4 shadow-primary gap-3">
+              <div className="flex justify-center items-center pt-2 pb-2 md:justify-start">
+                <h1 className="text-lg text-primary font-bold md:ml-2">
+                  {" "}
+                  Le tattoo
+                </h1>
+              </div>
               <div>
                 {/*Reference*/}
                 <label className="input input-bordered input-sm input-primary bg-base-300 flex items-center gap-2">
@@ -334,9 +402,9 @@ const FlashForm = () => {
 
                 <div className="form-control">
                   {DayPreference.map((day, index) => (
-                    <label key={index} className="label cursor-pointer">
+                    <label key={index} className="label cursor-default rounded-lg">
                       <span className="label-text">{day}</span>
-                      <input type="checkbox" onChange={() => onChangeDayOfWeek(index)} className="checkbox" />
+                      <input type="checkbox" disabled={submitLoading} onChange={() => onChangeDayOfWeek(index)} className="checkbox" />
                     </label>
                   ))}
                 </div>

@@ -14,8 +14,10 @@ import TattooCare from './TattooCare';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useRouter } from 'next/navigation';
 
 const HomePage = () => {
+    const router = useRouter();
     const { ref, inView } = useInView({
         triggerOnce: true,
         threshold: 0.1,
@@ -77,8 +79,17 @@ const HomePage = () => {
             <div className="mt-14">
                 <DivTitle>
                     <Image src={lettrageTattooCare} alt="lettrage" width={150} />
+
                 </DivTitle>
-                <TattooCare />
+                <DivTitle>
+                    <button
+                        onClick={() => router.push("/soin")}
+                        className="px-5 py-2 md:bg-primary bg-primary rounded-md font-bold scale-100 active:scale-90 hover:bg-accent transtion duration-150 ease-in-out"
+                    >
+                        Fiche de soin
+                    </button>
+                </DivTitle>
+
             </div>
         </>
     )

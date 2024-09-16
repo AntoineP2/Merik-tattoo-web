@@ -4,7 +4,7 @@ import { Resend } from "resend";
 const resend = new Resend(process.env.RESEND_API_KEY_OFFICIAL);
 
 export async function POST(req: Request, res: Response) {
-  const { name, surname, email, phone, reference, placement, disponibility, dayOfWeek } =
+  const { name, surname, email, phone, reference, placement, disponibility, daysOfWeek } =
     await req.json();
 
   const { data, error } = await resend.emails.send({
@@ -19,7 +19,7 @@ export async function POST(req: Request, res: Response) {
       reference,
       placement,
       disponibility,
-      dayOfWeek,
+      daysOfWeek,
     }),
   });
 

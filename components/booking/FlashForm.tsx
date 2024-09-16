@@ -22,6 +22,7 @@ import { toast } from "sonner";
 
 const FlashForm = () => {
   const [submitLoading, setSubmitLoading] = useState(false);
+  const [daysOfWeek, setDaysOfWeek] = useState<string[]>([]);
   const router = useRouter();
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -43,6 +44,15 @@ const FlashForm = () => {
     visible: { opacity: 1, x: 0 },
   };
 
+  const onChangeDayOfWeek = (day: number) => {
+    if (daysOfWeek.includes(DayPreference[day])) {
+      setDaysOfWeek(daysOfWeek.filter((d) => d !== DayPreference[day]))
+    } else {
+      setDaysOfWeek([...daysOfWeek, DayPreference[day]])
+    }
+  }
+
+
   const {
     register,
     handleSubmit,
@@ -58,7 +68,6 @@ const FlashForm = () => {
         phone,
         reference,
         placement,
-        dayOfWeek,
         disponibility,
       } = data;
       setSubmitLoading(true);
@@ -70,7 +79,7 @@ const FlashForm = () => {
         phone,
         reference,
         placement,
-        dayOfWeek,
+        daysOfWeek,
         disponibility,
       });
       setSubmitLoading(false);
@@ -323,23 +332,14 @@ const FlashForm = () => {
                   </h2>
                 </div>
 
-                <select
-                  disabled={submitLoading}
-                  className="select select-primary w-full bg-base-300 select-sm"
-                  {...register("dayOfWeek", {
-                    required: true,
-                    value: undefined,
-                  })}
-                >
-                  <option value="" disabled>
-                    Ton jour de la semaine péférentiel ?
-                  </option>
-                  {DayPreference.map((dayOfWeek) => (
-                    <option key={dayOfWeek} value={dayOfWeek}>
-                      {dayOfWeek}
-                    </option>
+                <div className="form-control">
+                  {DayPreference.map((day, index) => (
+                    <label key={index} className="label cursor-pointer">
+                      <span className="label-text">{day}</span>
+                      <input type="checkbox" onChange={() => onChangeDayOfWeek(index)} className="checkbox" />
+                    </label>
                   ))}
-                </select>
+                </div>
               </div>
             </motion.div>
 

@@ -20,6 +20,7 @@ const CustomTattooForm = () => {
   const [image, setImage] = useState<string | null>(null);
   const [submitLoading, setSubmitLoading] = useState(false);
   const router = useRouter();
+  const [daysOfWeek, setDaysOfWeek] = useState<string[]>([]);
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -40,6 +41,14 @@ const CustomTattooForm = () => {
     visible: { opacity: 1, x: 0 },
   };
 
+  const onChangeDayOfWeek = (day: number) => {
+    if (daysOfWeek.includes(DayPreference[day])) {
+      setDaysOfWeek(daysOfWeek.filter((d) => d !== DayPreference[day]))
+    } else {
+      setDaysOfWeek([...daysOfWeek, DayPreference[day]])
+    }
+  }
+
   const {
     register,
     handleSubmit,
@@ -56,7 +65,6 @@ const CustomTattooForm = () => {
         description,
         size,
         placement,
-        dayOfWeek,
         disponibility,
       } = data;
       setSubmitLoading(true);
@@ -68,7 +76,7 @@ const CustomTattooForm = () => {
         instagram,
         description,
         size,
-        dayOfWeek,
+        daysOfWeek,
         placement,
         disponibility,
         image
@@ -355,23 +363,14 @@ const CustomTattooForm = () => {
                   </h2>
                 </div>
 
-                <select
-                  disabled={submitLoading}
-                  className="select select-primary w-full bg-base-300 select-sm"
-                  {...register("dayOfWeek", {
-                    required: true,
-                    value: undefined,
-                  })}
-                >
-                  <option value="" disabled>
-                    Ton jour de la semaine péférentiel ?
-                  </option>
-                  {DayPreference.map((dayOfWeek) => (
-                    <option key={dayOfWeek} value={dayOfWeek}>
-                      {dayOfWeek}
-                    </option>
+                <div className="form-control">
+                  {DayPreference.map((day, index) => (
+                    <label key={index} className="label cursor-pointer">
+                      <span className="label-text">{day}</span>
+                      <input type="checkbox" onChange={() => onChangeDayOfWeek(index)} className="checkbox" />
+                    </label>
                   ))}
-                </select>
+                </div>
               </div>
 
               <div>

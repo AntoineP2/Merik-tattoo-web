@@ -46,7 +46,6 @@ export type FlashFormInputs = {
   phone: string;
   reference: string;
   placement: string;
-  dayOfWeek: string;
   disponibility: DISPONIBILITY_ENUM;
 };
 
@@ -56,7 +55,6 @@ export type CustomTattooFormInputs = {
   email: string;
   instagram: string;
   description: string;
-  dayOfWeek: string;
   placement: string;
   disponibility: DISPONIBILITY_ENUM;
   size: TATTOO_SIZE_ENUM;
@@ -70,7 +68,7 @@ export type CustomTattooFormMailInputs = {
   description: string;
   placement: string;
   disponibility: DISPONIBILITY_ENUM;
-  dayOfWeek: string;
+  daysOfWeek: string[];
   size: TATTOO_SIZE_ENUM;
   image: string | null;
 };

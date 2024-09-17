@@ -351,19 +351,19 @@ const CustomTattooForm = () => {
                     className="w-full"
                   />
                 </label>
-                {errors.surname?.type === "pattern" && (
+                {errors.placement?.type === "pattern" && (
                   <span className="text-error text-xs">
-                    Le prénom doit être composé de lettre uniquement
+                    L&apos;emplacement contient des caractères interdit
                   </span>
                 )}
-                {errors.surname?.type === "required" && (
+                {errors.placement?.type === "required" && (
                   <span className="text-error text-xs">
-                    Le prénom est obligatoire
+                    L&apos;emplacement est obligatoire
                   </span>
                 )}
-                {errors.surname?.type === "maxLength" && (
+                {errors.placement?.type === "maxLength" && (
                   <span className="text-error text-xs">
-                    Le prénom est trop long
+                    L&apos;emplacement est trop long
                   </span>
                 )}
               </div>
